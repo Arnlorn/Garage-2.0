@@ -50,6 +50,7 @@ namespace Garage_2._0.Models
         {
             if (ModelState.IsValid)
             {
+                parkedVehicle.TimeStamp = DateTime.Now;
                 db.parkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
