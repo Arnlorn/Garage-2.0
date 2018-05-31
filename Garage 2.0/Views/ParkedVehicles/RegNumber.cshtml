@@ -4,12 +4,17 @@
     ViewBag.Title = "Registration number";
 }
 
-<h2>Registration Number</h2>
+<h2>Registered Numbers</h2>
 
 <div>
-    <h4>Parked vehicle</h4>
+    <h4>Parked vehicles</h4>
     <hr />
     <dl class="dl-horizontal">
+        <form class="form-inline md-form mr-auto mb-4">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="id">
+            <button class="btn btn-outline btn-rounded btn-sm my-0" type="submit" >Search</button>
+        </form>
+        </br>
         <dt>
             @Html.DisplayNameFor(model => model.Type)
         </dt>
@@ -17,7 +22,6 @@
         <dd>
             @Html.DisplayFor(model => model.Type)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.RegNr)
         </dt>
@@ -25,6 +29,7 @@
         <dd>
             @Html.DisplayFor(model => model.RegNr)
         </dd>
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Color)
