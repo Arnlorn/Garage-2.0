@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Garage_2._0.Models.ParkedVehiclesViewModel>
+
+@{
+    ViewBag.Title = "Registration number";
+}
+
+<h2>Registered Numbers</h2>
+
+<div>
+    <h4>Parked vehicles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <form class="form-inline md-form mr-auto mb-4">
+            <input class="form-control" type="text" placeholder="contains" aria-label="Filter" name="fliterString">
+            <button class="btn btn-outline btn-rounded btn-sm my-0" type="submit">Filter</button>
+        </form>
+        <br />
+        <table class="table sortable table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegNr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Make)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NrOfWheels)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TimeStamp)
+                </th>
+                <th class="sorttable_nosort"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegNr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Make)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrOfWheels)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TimeStamp)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+        <p>
+            @Html.ActionLink("Back to Parking lot", "Index")
+        </p>
+    </dl>
+</div>
+<script src="~/Scripts/sorttable.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

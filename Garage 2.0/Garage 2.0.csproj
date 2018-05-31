@@ -157,6 +157,7 @@
       <DependentUpon>201805301325014_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ParkedVehiclesViewModel.cs" />
     <Compile Include="Models\Types.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Controllers\ParkedVehiclesController.cs" />
@@ -202,7 +203,7 @@
     <Content Include="Views\ParkedVehicles\Details.cshtml" />
     <Content Include="Views\ParkedVehicles\Edit.cshtml" />
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
-    <Content Include="Views\ParkedVehicles\RegNumber.cshtml" />
+    <Content Include="Views\ParkedVehicles\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
