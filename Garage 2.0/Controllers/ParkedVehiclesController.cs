@@ -20,6 +20,13 @@ namespace Garage_2._0.Models
             return View(db.parkedVehicles.ToList());
         }
 
+        public ActionResult RegNumber(string id)
+        {
+            var regNr = db.parkedVehicles.FirstOrDefault(i => i.RegNr == id);
+
+            return View(regNr);
+        }
+
         // GET: ParkedVehicles/Details/5
         public ActionResult Details(int? id)
         {
