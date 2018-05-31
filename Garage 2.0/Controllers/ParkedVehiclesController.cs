@@ -12,7 +12,7 @@ namespace Garage_2._0.Models
 {
     public class ParkedVehiclesController : Controller
     {
-        private RegisterContext db = new RegisterContext();
+        private RegisterContext db = new RegisterContext(); // TOMAS HÄR ÄR DEN NYA
 
         // GET: ParkedVehicles
         public ActionResult Index()
