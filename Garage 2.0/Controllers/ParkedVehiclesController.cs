@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Garage_2._0.DataAccessLayer;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Garage_2._0.DataAccessLayer;
 
 namespace Garage_2._0.Models
 {
@@ -22,7 +20,22 @@ namespace Garage_2._0.Models
 
         public ActionResult RegNumber(string id)
         {
-            var regNr = db.parkedVehicles.FirstOrDefault(i => i.RegNr == id);
+            var regNr = db.parkedVehicles
+                .Where(e => e.RegNr.Contains(id) || e.Color.Contains(id)
+                            || e.Make.Contains(id) || e.Model.Contains(id))
+                .Select(e => new ParkedVehiclesViewModel()
+                {
+                    Id = e.Id,
+                    Type = e.Type,
+                    RegNr = e.RegNr,
+                    Color = e.Color,
+                    Make = e.Make,
+                    Model = e.Model,
+                    NrOfWheels = e.NrOfWheels,
+                    TimeStamp = e.TimeStamp
+                });
+
+           // var regNr = db.parkedVehicles.FirstOrDefault(i => i.RegNr == id);
 
             return View(regNr);
         }

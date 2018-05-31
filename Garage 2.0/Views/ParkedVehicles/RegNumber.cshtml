@@ -1,4 +1,4 @@
-﻿@model Garage_2._0.Models.ParkedVehicle
+﻿@model IEnumerable<Garage_2._0.Models.ParkedVehiclesViewModel>
 
 @{
     ViewBag.Title = "Registration number";
@@ -11,68 +11,71 @@
     <hr />
     <dl class="dl-horizontal">
         <form class="form-inline md-form mr-auto mb-4">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="id">
-            <button class="btn btn-outline btn-rounded btn-sm my-0" type="submit" >Search</button>
+            <input class="form-control" type="text" placeholder="contains" aria-label="Filter" name="id">
+            <button class="btn btn-outline btn-rounded btn-sm my-0" type="submit">Filter</button>
         </form>
-        </br>
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
+        <br />
+        <table class="table sortable table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegNr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Make)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NrOfWheels)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TimeStamp)
+                </th>
+                <th class="sorttable_nosort"></th>
+            </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RegNr)
-        </dt>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegNr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Make)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrOfWheels)
+                    </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.RegNr)
-        </dd>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TimeStamp)
+                    </td>
 
+                </tr>
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
+        </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Make)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Make)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NrOfWheels)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NrOfWheels)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TimeStamp)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TimeStamp)
-        </dd>
-
+        <p>
+            @Html.ActionLink("Back to Parking lot", "Index")
+        </p>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Back to Parking lot", "Index")
-</p>
+<script src="~/Scripts/sorttable.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

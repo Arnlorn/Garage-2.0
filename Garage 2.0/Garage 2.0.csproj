@@ -157,6 +157,7 @@
       <DependentUpon>201805301325014_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ParkedVehiclesViewModel.cs" />
     <Compile Include="Models\Types.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
     <Compile Include="Controllers\ParkedVehiclesController.cs" />
