@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Garage_2._0.Models
 {
@@ -12,10 +8,12 @@ namespace Garage_2._0.Models
         public int Id { get; set; }
 
         [Display(Name = "Type of vehicle")]
+        [Range(1,int.MaxValue,ErrorMessage = "Select vehicle type")]
         public Types Type { get; set; }
 
         [Display(Name = "Registration number")]
         // [Index("IX_RegNum", IsUnique = true)]
+        [Required]
         public string RegNr { get; set; }
 
         [Display(Name = "Color")]

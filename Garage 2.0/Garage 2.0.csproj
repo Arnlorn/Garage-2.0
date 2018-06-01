@@ -168,6 +168,18 @@
     <Compile Include="Migrations\201806010906490_addValueToTypes.Designer.cs">
       <DependentUpon>201806010906490_addValueToTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806011018079_addNoneValueToTypes.cs" />
+    <Compile Include="Migrations\201806011018079_addNoneValueToTypes.Designer.cs">
+      <DependentUpon>201806011018079_addNoneValueToTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806011047263_addRangeToType.cs" />
+    <Compile Include="Migrations\201806011047263_addRangeToType.Designer.cs">
+      <DependentUpon>201806011047263_addRangeToType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806011054511_RegNrRequired.cs" />
+    <Compile Include="Migrations\201806011054511_RegNrRequired.Designer.cs">
+      <DependentUpon>201806011054511_RegNrRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ParkedVehiclesViewModel.cs" />
     <Compile Include="Models\Types.cs" />
@@ -245,6 +257,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806010906490_addValueToTypes.resx">
       <DependentUpon>201806010906490_addValueToTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011018079_addNoneValueToTypes.resx">
+      <DependentUpon>201806011018079_addNoneValueToTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011047263_addRangeToType.resx">
+      <DependentUpon>201806011047263_addRangeToType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011054511_RegNrRequired.resx">
+      <DependentUpon>201806011054511_RegNrRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
