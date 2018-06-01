@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Garage_2._0.Models
+﻿namespace Garage_2._0.Models
 {
-    public enum Types { Personbil, Motorcyckel, Lastbil, Flygplan, Buss }
+    public enum Types { Personbil = 1, Motorcyckel = 2, Lastbil =3, Flygplan = 4, Buss =5 }
 }

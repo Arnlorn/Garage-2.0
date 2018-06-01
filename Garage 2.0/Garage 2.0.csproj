@@ -157,6 +157,30 @@
     <Compile Include="Migrations\201805301325014_Init.Designer.cs">
       <DependentUpon>201805301325014_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806010757198_NullableType.cs" />
+    <Compile Include="Migrations\201806010757198_NullableType.Designer.cs">
+      <DependentUpon>201806010757198_NullableType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806010852261_AddNewType.cs" />
+    <Compile Include="Migrations\201806010852261_AddNewType.Designer.cs">
+      <DependentUpon>201806010852261_AddNewType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806010906490_addValueToTypes.cs" />
+    <Compile Include="Migrations\201806010906490_addValueToTypes.Designer.cs">
+      <DependentUpon>201806010906490_addValueToTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806011018079_addNoneValueToTypes.cs" />
+    <Compile Include="Migrations\201806011018079_addNoneValueToTypes.Designer.cs">
+      <DependentUpon>201806011018079_addNoneValueToTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806011047263_addRangeToType.cs" />
+    <Compile Include="Migrations\201806011047263_addRangeToType.Designer.cs">
+      <DependentUpon>201806011047263_addRangeToType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806011054511_RegNrRequired.cs" />
+    <Compile Include="Migrations\201806011054511_RegNrRequired.Designer.cs">
+      <DependentUpon>201806011054511_RegNrRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RecieptViewModel.cs" />
     <Compile Include="Models\ParkedVehiclesViewModel.cs" />
@@ -228,6 +252,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805301325014_Init.resx">
       <DependentUpon>201805301325014_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806010757198_NullableType.resx">
+      <DependentUpon>201806010757198_NullableType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806010852261_AddNewType.resx">
+      <DependentUpon>201806010852261_AddNewType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806010906490_addValueToTypes.resx">
+      <DependentUpon>201806010906490_addValueToTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011018079_addNoneValueToTypes.resx">
+      <DependentUpon>201806011018079_addNoneValueToTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011047263_addRangeToType.resx">
+      <DependentUpon>201806011047263_addRangeToType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011054511_RegNrRequired.resx">
+      <DependentUpon>201806011054511_RegNrRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
