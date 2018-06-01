@@ -15,7 +15,7 @@ namespace Garage_2._0.Migrations
 
         protected override void Seed(Garage_2._0.DataAccessLayer.RegisterContext context)
         {
-            context.parkedVehicles.AddOrUpdate(r => r.RegNr,
+            context.ParkedVehicles.AddOrUpdate(r => r.RegNr,
                 new ParkedVehicle
                 {
                     Type = Types.Flygplan,
@@ -41,7 +41,7 @@ namespace Garage_2._0.Migrations
                   Type = Types.Motorcyckel,
                   RegNr = "AFK001",
                   Color = "Black",
-                  Make = "Harley Davidsson",
+                  Make = "Harley Davidson",
                   Model = "Iron 883",
                   NrOfWheels = 2,
                   TimeStamp = DateTime.Now

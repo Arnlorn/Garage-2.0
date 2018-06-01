@@ -12,6 +12,6 @@ namespace Garage_2._0.DataAccessLayer
     public class RegisterContext : DbContext
     {
         public RegisterContext() : base("GarageAtarkomsten") {}
-        public DbSet<ParkedVehicle> parkedVehicles { get; set; }
+        public DbSet<ParkedVehicle> ParkedVehicles { get; set; }
     }
 }
