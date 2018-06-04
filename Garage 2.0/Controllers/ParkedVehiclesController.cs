@@ -19,11 +19,13 @@ namespace Garage_2._0.Models
             return View(db.ParkedVehicles.ToList());
         }
 
-        public ActionResult Filter(string fliterString)
+        public ActionResult Filter(string filterString)
         {
+            Enum.TryParse(filterString, true, out Types type);
             var regNr = db.ParkedVehicles
-                .Where(e => e.RegNr.Contains(fliterString) || e.Color.Contains(fliterString)
-                            || e.Make.Contains(fliterString) || e.Model.Contains(fliterString))
+                .Where(e => e.RegNr.Contains(filterString) || e.Color.Contains(filterString)
+                            || e.Make.Contains(filterString) || e.Model.Contains(filterString)
+                            || e.Type == type)
                 .Select(e => new ParkedVehiclesViewModel()
                 {
                     Id = e.Id,
@@ -158,29 +160,39 @@ namespace Garage_2._0.Models
         //GET
         public ActionResult Statistic()
         {
-            var statisticDictionary = new Dictionary<Types, int>();
-            int numberOfWheels;
+            var model = new StatisticViewModel();
+            model.Dictionary = new Dictionary<string, double>();
+            var numberOfWheels = 0;
+            double TotalMony = 0;
 
-            foreach (var vehicle in db.parkedVehicles)
+
+
+            foreach (var vehicle in db.ParkedVehicles)
             {
-                if (!statisticDictionary.ContainsKey(vehicle.Type))
+                if (!model.Dictionary.ContainsKey(vehicle.Type.ToString()))
                 {
-                    statisticDictionary.Add(vehicle.Type, 1);
+                    model.Dictionary.Add(vehicle.Type.ToString(), 1);
                 }
                 else
                 {
-                    statisticDictionary[vehicle.Type] += 1;
+                    model.Dictionary[vehicle.Type.ToString()] += 1;
                 }
 
+                numberOfWheels += vehicle.NrOfWheels;
 
+                TotalMony = (DateTime.Now - vehicle.TimeStamp).TotalMinutes * 0.1;
             }
 
-           
+            model.Dictionary.Add("Number of all Wheels", numberOfWheels);
+            model.Dictionary.Add("Total Mony", TotalMony);
 
-            return 
 
 
+            return View(model);
         }
+
+
+        //}
 
         protected override void Dispose(bool disposing)
         {

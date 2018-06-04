@@ -1,0 +1,22 @@
+﻿@model Garage_2._0.Models.StatisticViewModel
+
+@{
+    ViewBag.Title = "Statistic";
+}
+
+<h2>Statistic</h2>
+
+<div>
+    <h4>StatisticViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+
+@foreach (var item in Model.Dictionary)
+{
+    <p>@item.Key : @item.Value</p>
+}
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
