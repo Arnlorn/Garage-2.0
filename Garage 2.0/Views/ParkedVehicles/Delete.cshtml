@@ -8,64 +8,29 @@
 
 <h3>Are you sure you want to remove this vehicle from the parking lot?</h3>
 <div>
-    <h4>Parked Vehicle</h4>
+    <h4>Selected Vehicle</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
+        <dt> @Html.DisplayNameFor(model => model.Type)</dt>
+        <dd> @Html.DisplayFor(model => model.Type)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
+        <dt> @Html.DisplayNameFor(model => model.RegNr)</dt>
+        <dd> @Html.DisplayFor(model => model.RegNr)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RegNr)
-        </dt>
+        <dt> @Html.DisplayNameFor(model => model.Color) </dt>
+        <dd> @Html.DisplayFor(model => model.Color) </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RegNr)
-        </dd>
+        <dt> @Html.DisplayNameFor(model => model.Make)</dt>
+        <dd> @Html.DisplayFor(model => model.Make)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
+        <dt> @Html.DisplayNameFor(model => model.Model)</dt>
+        <dd> @Html.DisplayFor(model => model.Model)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
+        <dt> @Html.DisplayNameFor(model => model.NrOfWheels)</dt>
+        <dd> @Html.DisplayFor(model => model.NrOfWheels)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Make)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Make)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NrOfWheels)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NrOfWheels)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TimeStamp)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TimeStamp)
-        </dd>
+        <dt> @Html.DisplayNameFor(model => model.TimeStamp) </dt>
+        <dd> @Html.DisplayFor(model => model.TimeStamp) </dd>
 
     </dl>
 
@@ -73,8 +38,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Check out" class="btn btn-default" /> |
+            <input type="submit" value="Check out" class="btn btn-default"/> |
             @Html.ActionLink("Back to Parking lot", "Index")
         </div>
     }
+
 </div>

@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ParkedVehiclesController.cs" />
     <Compile Include="DataAccessLayer\RegisterContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,10 +182,10 @@
       <DependentUpon>201806011054511_RegNrRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\RecieptViewModel.cs" />
     <Compile Include="Models\ParkedVehiclesViewModel.cs" />
     <Compile Include="Models\Types.cs" />
     <Compile Include="Models\ParkedVehicle.cs" />
-    <Compile Include="Controllers\ParkedVehiclesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +229,9 @@
     <Content Include="Views\ParkedVehicles\Edit.cshtml" />
     <Content Include="Views\ParkedVehicles\Index.cshtml" />
     <Content Include="Views\ParkedVehicles\Filter.cshtml" />
+    <Content Include="Views\RecieptViewModels\Details.cshtml" />
+    <Content Include="Views\Details.cshtml" />
+    <Content Include="Views\ParkedVehicles\Reciept.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

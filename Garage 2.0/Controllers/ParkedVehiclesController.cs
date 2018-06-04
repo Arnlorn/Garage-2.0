@@ -11,27 +11,19 @@ namespace Garage_2._0.Models
 {
     public class ParkedVehiclesController : Controller
     {
-        private RegisterContext db = new RegisterContext(); // TOMAS HÄR ÄR DEN NYA
+        private RegisterContext db = new RegisterContext(); 
 
         // GET: ParkedVehicles
         public ActionResult Index()
         {
-            return View(db.parkedVehicles.ToList());
+            return View(db.ParkedVehicles.ToList());
         }
 
-        public ActionResult Filter(string filterString)
+        public ActionResult Filter(string fliterString)
         {
-            if (filterString== null)
-            {
-                filterString = "Default";
-            }
-            //var mytype = (Types) Enum.Parse(typeof(Types), filterString);
-            Enum.TryParse<Types>(filterString, true, out Types mytype);
-            
-            var regNr = db.parkedVehicles
-                .Where(e => e.RegNr.Contains(filterString) || e.Color.Contains(filterString)
-                            || e.Make.Contains(filterString) || e.Model.Contains(filterString)
-                            || e.Type == mytype)
+            var regNr = db.ParkedVehicles
+                .Where(e => e.RegNr.Contains(fliterString) || e.Color.Contains(fliterString)
+                            || e.Make.Contains(fliterString) || e.Model.Contains(fliterString))
                 .Select(e => new ParkedVehiclesViewModel()
                 {
                     Id = e.Id,
@@ -44,7 +36,7 @@ namespace Garage_2._0.Models
                     TimeStamp = e.TimeStamp
                 });
 
-           // var regNr = db.parkedVehicles.FirstOrDefault(i => i.RegNr == id);
+           // var regNr = db.ParkedVehicles.FirstOrDefault(i => i.RegNr == id);
 
             return View(regNr);
         }
@@ -56,7 +48,7 @@ namespace Garage_2._0.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.parkedVehicles.Find(id);
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -80,7 +72,7 @@ namespace Garage_2._0.Models
             if (ModelState.IsValid)
             {
                 parkedVehicle.TimeStamp = DateTime.Now;
-                db.parkedVehicles.Add(parkedVehicle);
+                db.ParkedVehicles.Add(parkedVehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -95,7 +87,7 @@ namespace Garage_2._0.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.parkedVehicles.Find(id);
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -126,7 +118,7 @@ namespace Garage_2._0.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ParkedVehicle parkedVehicle = db.parkedVehicles.Find(id);
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
             if (parkedVehicle == null)
             {
                 return HttpNotFound();
@@ -139,9 +131,27 @@ namespace Garage_2._0.Models
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ParkedVehicle parkedVehicle = db.parkedVehicles.Find(id);
-            db.parkedVehicles.Remove(parkedVehicle);
+            ParkedVehicle parkedVehicle = db.ParkedVehicles.Find(id);
+            db.ParkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
+            RecieptViewModel CheckOutVehicle = new RecieptViewModel
+            {
+                   Id = parkedVehicle.Id,
+                   Type = parkedVehicle.Type,
+                   RegNr = parkedVehicle.RegNr,
+                   TimeStamp = parkedVehicle.TimeStamp
+            };
+            return RedirectToAction("Reciept",  CheckOutVehicle );
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Reciept(RecieptViewModel checkOutVehicle)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(checkOutVehicle);
+            }
             return RedirectToAction("Index");
         }
 
