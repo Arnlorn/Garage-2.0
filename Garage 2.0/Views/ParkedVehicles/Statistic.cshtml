@@ -7,16 +7,18 @@
 <h2>Statistic</h2>
 
 <div>
-    <h4>StatisticViewModel</h4>
+    <h4>Statistic</h4>
     <hr />
     <dl class="dl-horizontal">
+        @foreach (var item in Model.Dictionary)
+         {
+            <dt>@item.Key</dt>
+            <dd>@item.Value</dd>
+         }
+
     </dl>
 </div>
 
-@foreach (var item in Model.Dictionary)
-{
-    <p>@item.Key : @item.Value</p>
-}
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -180,7 +180,7 @@ namespace Garage_2._0.Models
 
                 numberOfWheels += vehicle.NrOfWheels;
 
-                TotalMony = (DateTime.Now - vehicle.TimeStamp).TotalMinutes * 0.1;
+                TotalMony = Math.Round((DateTime.Now - vehicle.TimeStamp).TotalMinutes * 0.1,2);
             }
 
             model.Dictionary.Add("Number of all Wheels", numberOfWheels);
