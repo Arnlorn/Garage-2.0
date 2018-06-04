@@ -7,7 +7,12 @@
 <h2>Parking lot</h2>
 
 <p>
-    @Html.ActionLink("Park new vehicle", "Create")
+
+    @if (Model.Count() < 5)
+    {
+        @Html.ActionLink("Park new vehicle", "Create")
+    }
+   
 </p>
 
 <table class="table sortable table-striped">

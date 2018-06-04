@@ -163,7 +163,7 @@ namespace Garage_2._0.Models
             var model = new StatisticViewModel();
             model.Dictionary = new Dictionary<string, double>();
             var numberOfWheels = 0;
-            double TotalMony = 0;
+            double totalMony = 0;
 
 
 
@@ -180,11 +180,11 @@ namespace Garage_2._0.Models
 
                 numberOfWheels += vehicle.NrOfWheels;
 
-                TotalMony = Math.Round((DateTime.Now - vehicle.TimeStamp).TotalMinutes * 0.1,2);
+                totalMony = Math.Round(((DateTime.Now - vehicle.TimeStamp).TotalMinutes * 0.1),2);
             }
 
-            model.Dictionary.Add("Number of all Wheels", numberOfWheels);
-            model.Dictionary.Add("Total Mony", TotalMony);
+            model.Dictionary.Add("Total Number of Wheels", numberOfWheels);
+            model.Dictionary.Add("Total Mony", totalMony);
 
 
 
