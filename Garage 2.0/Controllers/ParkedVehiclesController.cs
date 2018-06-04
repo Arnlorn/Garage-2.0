@@ -18,11 +18,11 @@ namespace Garage_2._0.Models
             return View(db.ParkedVehicles.ToList());
         }
 
-        public ActionResult Filter(string fliterString)
+        public ActionResult Filter(string FilterString)
         {
             var regNr = db.ParkedVehicles
-                .Where(e => e.RegNr.Contains(fliterString) || e.Color.Contains(fliterString)
-                            || e.Make.Contains(fliterString) || e.Model.Contains(fliterString))
+                .Where(e => e.RegNr.Contains(FilterString) || e.Color.Contains(FilterString)
+                            || e.Make.Contains(FilterString) || e.Model.Contains(FilterString))
                 .Select(e => new ParkedVehiclesViewModel()
                 {
                     Id = e.Id,
