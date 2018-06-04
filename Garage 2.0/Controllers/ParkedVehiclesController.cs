@@ -1,5 +1,6 @@
 ﻿using Garage_2._0.DataAccessLayer;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -142,6 +143,33 @@ namespace Garage_2._0.Models
             db.parkedVehicles.Remove(parkedVehicle);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //GET
+        public ActionResult Statistic()
+        {
+            var statisticDictionary = new Dictionary<Types, int>();
+            int numberOfWheels;
+
+            foreach (var vehicle in db.parkedVehicles)
+            {
+                if (!statisticDictionary.ContainsKey(vehicle.Type))
+                {
+                    statisticDictionary.Add(vehicle.Type, 1);
+                }
+                else
+                {
+                    statisticDictionary[vehicle.Type] += 1;
+                }
+
+
+            }
+
+           
+
+            return 
+
+
         }
 
         protected override void Dispose(bool disposing)
