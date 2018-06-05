@@ -25,6 +25,7 @@ namespace Garage_2._0.Models
         [Display(Name = "Model")]
         public string Model { get; set; }
 
+        [Range(1, 50, ErrorMessage = "Please choose a number of wheels")]
         [Display(Name="Number of wheels")]
         public int NrOfWheels { get; set; }
 
