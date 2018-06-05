@@ -238,7 +238,6 @@
     <Content Include="Views\Details.cshtml" />
     <Content Include="Views\ParkedVehicles\Reciept.cshtml" />
     <Content Include="Views\ParkedVehicles\Statistic.cshtml" />
-    <Content Include="Views\ParkedVehicles\GarageLimit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

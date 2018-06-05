@@ -299,5 +299,35 @@ namespace Garage_2._0.Models
             }
             base.Dispose(disposing);
         }
+        public ActionResult Statistic()
+        {
+            var model = new StatisticViewModel();
+            model.Dictionary = new Dictionary<string, double>();
+            var numberOfWheels = 0;
+            double totalMoney = 0;
+
+
+
+            foreach (var vehicle in db.ParkedVehicles)
+            {
+                if (!model.Dictionary.ContainsKey(vehicle.Type.ToString()))
+                {
+                    model.Dictionary.Add(vehicle.Type.ToString(), 1);
+                }
+                else
+                {
+                    model.Dictionary[vehicle.Type.ToString()] += 1;
+                }
+
+                numberOfWheels += vehicle.NrOfWheels;
+
+                totalMoney += Math.Round(((DateTime.Now - vehicle.TimeStamp).TotalMinutes * 5), 2);
+            }
+
+            model.Dictionary.Add("Total Number of Wheels", numberOfWheels);
+            model.Dictionary.Add("Billable proceeds", totalMoney);
+            return View(model);
+        }
+
     }
 }
