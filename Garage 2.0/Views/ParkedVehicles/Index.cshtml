@@ -13,7 +13,7 @@
 <table class="table sortable table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Type)  
+            @Html.DisplayNameFor(model => model.Type)
         <th>
             @Html.DisplayNameFor(model => model.RegNr)
         </th>
@@ -30,6 +30,9 @@
             @Html.DisplayNameFor(model => model.NrOfWheels)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.ParkingSlot)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.TimeStamp)
         </th>
         <th class="sorttable_nosort"></th>
@@ -37,33 +40,36 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegNr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Make)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NrOfWheels)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TimeStamp)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Check out", "Delete", new { id = item.Id })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegNr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Make)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NrOfWheels)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParkingSlot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Check out", "Delete", new { id = item.Id })
+        </td>
+    </tr>
     }
 
 </table>

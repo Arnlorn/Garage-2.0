@@ -31,6 +31,7 @@ namespace Garage_2._0.Models
         [Display(Name = "Time of parking")]
         public DateTime TimeStamp { get; set; }
 
-        
+        [Display(Name = "Parking Slot")]
+        public int ParkingSlot { get; set; }
     }
 }
