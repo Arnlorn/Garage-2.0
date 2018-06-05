@@ -16,14 +16,24 @@ namespace Garage_2._0.Models
         public Types Type { get; set; }
 
         [Display(Name = "Registration number")]
-        // [Index("IX_RegNum", IsUnique = true)]
         public string RegNr { get; set; }
 
-        [Display(Name = "Time of parking")]
+        [Display(Name = "Check-in  time")]
         public DateTime TimeStamp { get; set; }
 
+        [Display(Name = "Check-out time")]
+        public DateTime Now => DateTime.Now;
+
+        [Display(Name = "Parked for")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh\\:mm\\:ss}")]
         public TimeSpan Duration => DateTime.Now - TimeStamp;
-        public const decimal PricePerMinute = 5; //Hardcoded price makes for frequent code updates ... more billable hours, wohooooo ;)
+
+        [Display(Name = "Price per minute")]
+        public decimal PricePerMinute => 5; //Hardcoded price makes for frequent code updates ... more billable hours, wohooooo ;)
+
+        [Display(Name = "Cost")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:C}")]
+        public decimal Cost => (decimal)(int)(Duration.TotalMinutes + 1 ) * PricePerMinute;
 
     }
 }

@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201806011054511_RegNrRequired.Designer.cs">
       <DependentUpon>201806011054511_RegNrRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806041308048_ParkingSlot.cs" />
+    <Compile Include="Migrations\201806041308048_ParkingSlot.Designer.cs">
+      <DependentUpon>201806041308048_ParkingSlot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\RecieptViewModel.cs" />
     <Compile Include="Models\ParkedVehiclesViewModel.cs" />
@@ -273,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806011054511_RegNrRequired.resx">
       <DependentUpon>201806011054511_RegNrRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806041308048_ParkingSlot.resx">
+      <DependentUpon>201806041308048_ParkingSlot.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
