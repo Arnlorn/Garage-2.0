@@ -325,7 +325,7 @@ namespace Garage_2._0.Models
             }
 
             model.Dictionary.Add("Total Number of Wheels", numberOfWheels);
-            model.Dictionary.Add("Billable proceeds", totalMoney);
+            model.Dictionary.Add("Billable proceeds", totalMoney);//ändrat felstavning
             return View(model);
         }
 
