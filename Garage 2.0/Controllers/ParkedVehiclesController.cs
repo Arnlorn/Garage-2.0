@@ -1,5 +1,6 @@
 ﻿using Garage_2._0.DataAccessLayer;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -20,9 +21,11 @@ namespace Garage_2._0.Models
 
         public ActionResult Filter(string FilterString)
         {
+            Enum.TryParse(FilterString, true, out Types type);
             var regNr = db.ParkedVehicles
                 .Where(e => e.RegNr.Contains(FilterString) || e.Color.Contains(FilterString)
-                            || e.Make.Contains(FilterString) || e.Model.Contains(FilterString))
+                            || e.Make.Contains(FilterString) || e.Model.Contains(FilterString)
+                            || e.Type == type)
                 .Select(e => new ParkedVehiclesViewModel()
                 {
                     Id = e.Id,
@@ -153,6 +156,43 @@ namespace Garage_2._0.Models
             }
             return RedirectToAction("Index");
         }
+
+        //GET
+        public ActionResult Statistic()
+        {
+            var model = new StatisticViewModel();
+            model.Dictionary = new Dictionary<string, double>();
+            var numberOfWheels = 0;
+            double totalMony = 0;
+
+
+
+            foreach (var vehicle in db.ParkedVehicles)
+            {
+                if (!model.Dictionary.ContainsKey(vehicle.Type.ToString()))
+                {
+                    model.Dictionary.Add(vehicle.Type.ToString(), 1);
+                }
+                else
+                {
+                    model.Dictionary[vehicle.Type.ToString()] += 1;
+                }
+
+                numberOfWheels += vehicle.NrOfWheels;
+
+                totalMony = Math.Round(((DateTime.Now - vehicle.TimeStamp).TotalMinutes * 0.1),2);
+            }
+
+            model.Dictionary.Add("Total Number of Wheels", numberOfWheels);
+            model.Dictionary.Add("Total Mony", totalMony);
+
+
+
+            return View(model);
+        }
+
+
+        //}
 
         protected override void Dispose(bool disposing)
         {
