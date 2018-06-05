@@ -21,18 +21,18 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Parking Lot", "Index", "ParkedVehicles")</li>
-                    @*<li>@Html.ActionLink("Park new vehicle", "Create", "ParkedVehicles")</li>*@
+                    <li>@Html.ActionLink("Park new vehicle", "Create", "ParkedVehicles")</li>
                     <li>@Html.ActionLink("Filter", "Filter", "ParkedVehicles")</li>
-                    <li>@Html.ActionLink("Statistic","Statistic","ParkedVehicles")</li>
+                    <li>@Html.ActionLink("Statistics", "Statistic", "ParkedVehicles")</li>
                 </ul>
-            </div>
+            </div>  
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Riksorganisationen för Bortglömda Fordon (RFBF)</p>
+            <p>&copy; @DateTime.Now.Year - Riksorganisationen för Bortglömda Fordon (RBF)</p>
         </footer>
     </div>
 

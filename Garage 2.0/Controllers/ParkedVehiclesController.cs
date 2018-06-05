@@ -11,6 +11,7 @@ namespace Garage_2._0.Models
 {
     public class ParkedVehiclesController : Controller
     {
+        private const int numberOfParkingSlots = 20;
         private RegisterContext db = new RegisterContext(); 
 
         // GET: ParkedVehicles
@@ -37,8 +38,6 @@ namespace Garage_2._0.Models
                     NrOfWheels = e.NrOfWheels,
                     TimeStamp = e.TimeStamp
                 });
-
-           // var regNr = db.ParkedVehicles.FirstOrDefault(i => i.RegNr == id);
 
             return View(regNr);
         }
@@ -73,13 +72,111 @@ namespace Garage_2._0.Models
         {
             if (ModelState.IsValid)
             {
-                parkedVehicle.TimeStamp = DateTime.Now;
-                db.ParkedVehicles.Add(parkedVehicle);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var parkedVehicles = db.ParkedVehicles.ToList();
+                int[] Parkingslots = GetParkingSlots(parkedVehicles);
+              
+                for (int i = 0; i < numberOfParkingSlots; i++)
+                {
+                    if (parkedVehicle.Type == Types.Lastbil || parkedVehicle.Type == Types.Buss)
+                    {
+                        if (i == numberOfParkingSlots)
+                        {
+                            GarageLimit();
+                            break;
+                        } else
+                        if (Parkingslots[i] == 0 && Parkingslots[i+1] == 0)
+                        {
+                            parkedVehicle.ParkingSlot = i;
+                            Park_It(parkedVehicle);
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    else
+                    if (parkedVehicle.Type == Types.Flygplan)
+                    {
+                        if (i == numberOfParkingSlots || i == numberOfParkingSlots - 1)
+                        {
+                            GarageLimit();
+                            break;
+                        }
+                        else
+                        if (Parkingslots[i] == 0 && Parkingslots[i + 1] == 0 && Parkingslots[i + 2] == 0)
+                        {
+                            parkedVehicle.ParkingSlot = i;
+                            Park_It(parkedVehicle);
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    else
+                    if (parkedVehicle.Type == Types.Personbil)
+                    {
+                        if (Parkingslots[i] == 0)
+                        {
+                            parkedVehicle.ParkingSlot = i;
+                            Park_It(parkedVehicle);
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    else
+                    if (parkedVehicle.Type == Types.Motorcyckel)
+                    {
+                        if (Parkingslots[i] < 3)
+                        {
+                            parkedVehicle.ParkingSlot = i;
+                            Park_It(parkedVehicle);
+                            return RedirectToAction("Index");
+                        }
+                    }
+                }
+                GarageLimit();
             }
-
             return View(parkedVehicle);
+        }
+
+        private int[] GetParkingSlots(List<ParkedVehicle> parkedVehicles)
+        {
+            int[] Parkingslots = new int[numberOfParkingSlots];
+            // foreach (var i in Parkingslots) { Parkingslots[i] = 0; } // Defaultvalue is already 0
+
+            for (int i = 0; i < parkedVehicles.Count; i++)
+            {
+
+                if (parkedVehicles[i].Type == Types.Lastbil || parkedVehicles[i].Type == Types.Buss)
+                {
+                    Parkingslots[parkedVehicles[i].ParkingSlot] = 3;
+                    Parkingslots[parkedVehicles[i].ParkingSlot + 1] = 3;
+                }
+                else
+                if (parkedVehicles[i].Type == Types.Flygplan)
+                {
+                    Parkingslots[parkedVehicles[i].ParkingSlot] = 3;
+                    Parkingslots[parkedVehicles[i].ParkingSlot + 1] = 3;
+                    Parkingslots[parkedVehicles[i].ParkingSlot + 2] = 3;
+                }
+                else
+                if (parkedVehicles[i].Type == Types.Personbil)
+                {
+                    Parkingslots[parkedVehicles[i].ParkingSlot] = 3;
+                }
+                else
+                if (parkedVehicles[i].Type == Types.Motorcyckel)
+                {
+                    Parkingslots[parkedVehicles[i].ParkingSlot]++;
+                }
+            }
+            return Parkingslots;
+        }
+
+        private void Park_It(ParkedVehicle parkedVehicle)
+        {
+            parkedVehicle.TimeStamp = DateTime.Now;
+            db.ParkedVehicles.Add(parkedVehicle);
+            db.SaveChanges();
+        }
+
+        private void GarageLimit()
+        {
+            Response.Write("<script type=\"text/javascript\">alert('No space for the choosen vehicle type');</script>");
         }
 
         // GET: ParkedVehicles/Edit/5
@@ -141,7 +238,7 @@ namespace Garage_2._0.Models
                    Id = parkedVehicle.Id,
                    Type = parkedVehicle.Type,
                    RegNr = parkedVehicle.RegNr,
-                   TimeStamp = parkedVehicle.TimeStamp
+                   TimeStamp = parkedVehicle.TimeStamp,
             };
             return RedirectToAction("Reciept",  CheckOutVehicle );
         }
@@ -202,5 +299,35 @@ namespace Garage_2._0.Models
             }
             base.Dispose(disposing);
         }
+        public ActionResult Statistic()
+        {
+            var model = new StatisticViewModel();
+            model.Dictionary = new Dictionary<string, double>();
+            var numberOfWheels = 0;
+            double totalMoney = 0;
+
+
+
+            foreach (var vehicle in db.ParkedVehicles)
+            {
+                if (!model.Dictionary.ContainsKey(vehicle.Type.ToString()))
+                {
+                    model.Dictionary.Add(vehicle.Type.ToString(), 1);
+                }
+                else
+                {
+                    model.Dictionary[vehicle.Type.ToString()] += 1;
+                }
+
+                numberOfWheels += vehicle.NrOfWheels;
+
+                totalMoney += Math.Round(((DateTime.Now - vehicle.TimeStamp).TotalMinutes * 5), 2);
+            }
+
+            model.Dictionary.Add("Total Number of Wheels", numberOfWheels);
+            model.Dictionary.Add("Billable proceeds", totalMoney);
+            return View(model);
+        }
+
     }
 }
